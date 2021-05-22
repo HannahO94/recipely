@@ -37,13 +37,13 @@ export default function CreateCategory() {
       {/* Form for creating a new category */}
       {user && (
         <Link className="createCategory__link" to="/profile">
-          Back
+          Tillbaka
         </Link>
       )}
       <div className="createCategory">
         <div className="createCategory__wrapper">
-          <h1>Add a new collection</h1>
-          <label htmlFor="categoryname">Collection name</label>
+          <h1>Lägg till ny samling</h1>
+          <label htmlFor="categoryname">Samlingens namn</label>
           <input
             type="text"
             value={category}
@@ -51,7 +51,7 @@ export default function CreateCategory() {
           />
           {/* Adds a new cateory on click */}
           <button className="createCategory__btn" onClick={handleUpload}>
-            Add collection
+            Lägg till 
           </button>
         </div>
       </div>

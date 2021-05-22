@@ -16,7 +16,7 @@ export default function SignInBtn() {
 
     return (
         <div className="signInBtn" onClick={signInBtnClick}>
-            <p>Sign in with Google</p>
+            <p>Logga in med Google</p>
         </div>
     )
 }

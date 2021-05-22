@@ -152,7 +152,6 @@ export default function EditPost(props) {
     setUpdateList((prevState) => {
       return [...prevState, ingredientItem];
     });
-    console.log(updateList);
     setIngredient("");
     setAmount("");
     setMeasure("");
@@ -212,7 +211,7 @@ export default function EditPost(props) {
     <div className="edit">
       <Navbar />
       <Link to={{ pathname: `/recipe/${id}`, state: { from: from } }}>
-        Back
+        Tillbaka
       </Link>
          {/* Checks if there is a user in context. Only logged in users can edit recipes */}
       {user ? (
@@ -220,14 +219,14 @@ export default function EditPost(props) {
              {/* If the type is write the edit form is displayed in one way, and the form works the same way as create-post */}
           {recipeType === "write" ? (
             <div className="edit__post">
-              <h1>Edit recipe</h1>
-              <p>Recipe title</p>
+              <h1>Redigera recept</h1>
+              <p>Recept namn</p>
               <input
                 value={title && title}
                 type="text"
                 onChange={(e) => setTitle(e.target.value)}
               />
-              <label htmlFor="collection">Choose a collection:</label>
+              <label htmlFor="collection">Välj en samling:</label>
                  {/*User can change collection for the recipe, then it will be shown in that collection in the profile */}
               <select
                 name="collection"
@@ -249,7 +248,7 @@ export default function EditPost(props) {
                     }
                   })}
               </select>
-              <label htmlFor="category">Choose a category:</label>
+              <label htmlFor="category">Välj en kategori:</label>
               <select
                 name="category"
                 value={category}
@@ -267,14 +266,14 @@ export default function EditPost(props) {
                 })}
               </select>
               <div>
-                <label htmlFor="public">Public</label>
+                <label htmlFor="public">Publik</label>
                 <input
                   type="radio"
                   name="public"
                   onChange={(e) => setIsPublic(true)}
                   checked={isPublic}
                 />
-                <label htmlFor="private">Private</label>
+                <label htmlFor="private">Privat</label>
                 <input
                   type="radio"
                   name="private"
@@ -283,7 +282,7 @@ export default function EditPost(props) {
                 />
               </div>
               <div>
-                <label>Portions</label>
+                <label>Portioner</label>
                 <input
                   type="number"
                   name="portions"
@@ -293,7 +292,7 @@ export default function EditPost(props) {
                   onInput={(e) => setPortions(e.target.value)}
                 />
               </div>
-              <p className="edit__text">Ingredients</p>
+              <p className="edit__text">Ingredienser</p>
               <ul>
                    {/*maps over the exsisting ingredients, user can remove ingridients*/}
                 {updateList &&
@@ -310,10 +309,10 @@ export default function EditPost(props) {
                     );
                   })}
               </ul>
-              <p className="edit__text">Add new ingredient</p>
+              <p className="edit__text">Lägg till ny ingrediens</p>
               <div className="edit__addIngredient">
                 <div>
-                  <label>Ingredient</label>
+                  <label>Ingrediens</label>
                   <input
                     type="text"
                     value={ingredient}
@@ -321,7 +320,7 @@ export default function EditPost(props) {
                   />
                 </div>
                 <div>
-                  <label>Amount</label>
+                  <label>Mängd</label>
                   <input
                     value={amount}
                     className="edit__inputSmaller"
@@ -330,7 +329,7 @@ export default function EditPost(props) {
                   />
                 </div>
                 <div>
-                  <label>Measure</label>
+                  <label>Mått</label>
                   <input
                     value={measure}
                     type="text"
@@ -344,7 +343,7 @@ export default function EditPost(props) {
                   <AddCircleIcon />
                 </button>
               </div>
-              <p>Description</p>
+              <p>Beskrivning</p>
               <textarea
                 className="edit__textarea"
                 value={description && description}
@@ -359,7 +358,6 @@ export default function EditPost(props) {
               </div>
               <div className="createPost__imageUpload">
                 <label htmlFor="fileInput">
-                  {" "}
                   <AddAPhotoIcon
                     style={{ cursor: "pointer", fontSize: "30px" }}
                   />
@@ -375,25 +373,26 @@ export default function EditPost(props) {
                 className="createPost__uploadBtn"
                 onClick={handleChangeUpload}
               >
-                Upload
+                Uppdatera
               </button>
             </div>
           ) : (
                //if the type is link another form is displayed
             <div className="edit__post">
-              <h1>Edit recipe</h1>
-              <p>Recipe title</p>
+              <h1>Redigera recept</h1>
+              <p>Recept namn</p>
               <input
                 value={title && title}
                 type="text"
                 onChange={(e) => setTitle(e.target.value)}
               />
+                 <p>Recept länk</p>
               <input
                 value={link && link}
                 type="text"
                 onChange={(e) => setLink(e.target.value)}
               />
-              <label htmlFor="collection">Choose a collection:</label>
+              <label htmlFor="collection">Välj en samling:</label>
                  {/*User can change collection for the recipe, then it will be shown in that collection in the profile */}
               <select
                 name="collection"
@@ -415,7 +414,7 @@ export default function EditPost(props) {
                     }
                   })}
               </select>
-              <label htmlFor="category">Choose a category:</label>
+              <label htmlFor="category">Välj en kategori:</label>
               <select
                 name="category"
                 value={category}
@@ -433,14 +432,14 @@ export default function EditPost(props) {
                 })}
               </select>
               <div>
-                <label htmlFor="public">Public</label>
+                <label htmlFor="public">Publik</label>
                 <input
                   type="radio"
                   name="public"
                   onChange={(e) => setIsPublic(true)}
                   checked={isPublic}
                 />
-                <label htmlFor="private">Private</label>
+                <label htmlFor="private">Privat</label>
                 <input
                   type="radio"
                   name="private"
@@ -449,7 +448,7 @@ export default function EditPost(props) {
                 />
               </div>
 
-              <p>Description</p>
+              <p>Anteckningar</p>
               <textarea
                 className="edit__textarea"
                 value={description && description}
@@ -470,7 +469,7 @@ export default function EditPost(props) {
                 className="createPost__uploadBtn"
                 onClick={handleChangeUpload}
               >
-                Upload
+                Uppdatera
               </button>
             </div>
           )}

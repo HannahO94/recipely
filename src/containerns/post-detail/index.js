@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Navbar } from "..";
 import { Comment, CommentInput } from "../../components";
 import { UserContext } from "../../contexts/user";
+import { db } from "../../firebase";
 import "./style.css";
 
 export default function PostDetail(props) {
@@ -17,7 +18,6 @@ export default function PostDetail(props) {
   //If the user clcks on increase or decrease portions it calculates whick to show
   //It increases with two except if the recipe is for one person, then it increases with one
   const calculatePortions = (type, port) => {
-    console.log(type, port);
     if (type === "minus") {
       let newPortions = port % 2 === 0 ? port - 2 : port - 1;
       setPortions(newPortions);
@@ -39,12 +39,21 @@ export default function PostDetail(props) {
       ? (num.toFixed(2) / oldPoritons) * portions
       : amount;
   };
+  if(recipe === null) {
+    db.collection("posts")
+    .orderBy("timestamp", "desc")
+    .onSnapshot((snapshot) => {
+      setRecipe(
+        snapshot.docs.map((doc) => ({ id: doc.id, post: doc.data() }))
+      );
+    });
+  }
 
   return (
     <div className="postDetail">
       <Navbar />
       <div className="linkback">
-        <Link to={from}>Back</Link>
+        <Link to={from}>Tillbaka</Link>
       </div>
        {/*Maps over the recipes and displays the one with the is that was sent in as prop*/}
       {recipe &&
@@ -77,10 +86,10 @@ export default function PostDetail(props) {
                         <h1 className="postDetail__title">
                           {recipeItem.post.title}
                         </h1>
-                        <img
+                        {/* <img
                           className="postDetail__img"
                           src={recipeItem.post.photoUrl}
-                        />
+                        /> */}
                       </div>
                     </>
                   )}
@@ -102,12 +111,12 @@ export default function PostDetail(props) {
                             }
                           >
                             -
-                          </span>{" "}
+                          </span>
                           <span className="postDeatil__portion">
                             {portions
                               ? portions
                               : parseInt(recipeItem.post.portions)}{" "}
-                          </span>{" "}
+                          </span>
                           <span
                             className="postDeatil__portionsIncrease"
                             onClick={(e) =>
@@ -124,11 +133,11 @@ export default function PostDetail(props) {
                         </div>
                       )}
                       {/*Shows the list of ingredients, the amount is beeing calculated in calculateIngredients*/}
-                      <p className="heading">Ingredients:</p>
+                      <p className="heading">Ingredienser:</p>
+                      <div className="photoingredients">
                       <ul className="postDetail__ingredientList">
                         {recipeItem.post.ingredientList.map((ingredient, i) => {
                           return (
-                            <div>
                               <li
                                 key={i}
                                 className="postDetail__ingredientItem"
@@ -138,14 +147,20 @@ export default function PostDetail(props) {
                                   ingredient.amount,
                                   recipeItem.post.portions
                                 )}
-                                {ingredient.measure} {ingredient.ingredient}
+                                 {" "} {ingredient.measure}{" "}{ingredient.ingredient}
                               </li>
-                            </div>
                           );
                         })}
                       </ul>
+                      <div>
+                        <img
+                          className="postDetail__img"
+                          src={recipeItem.post.photoUrl}
+                        />
+                        </div>
+                      </div>
                       <div className="description">
-                        <p className="heading">Description:</p>
+                        <p className="heading">Beskrivning:</p>
                         <p className="postDetail__description">
                           {recipeItem.post.description}
                         </p>
@@ -158,17 +173,15 @@ export default function PostDetail(props) {
                       <div>
                         <h1>{recipeItem.post.title}</h1>
                         <p>
-                          The recipe is below, click this link if you can't see
-                          it
+                          Receptet är nedan, klicka på länken om det inte är synligt
                         </p>
                         <a href={recipeItem.post.link} target="_blank">
                           {recipeItem.post.link}
                         </a>
                         {recipeItem.post.description && (
                           <>
-                            {console.log(recipeItem.post.description)}
-                            <p>Notes</p>
-                            <p>{recipeItem.post.description}</p>
+                            <p>Antecklingar</p>
+                            <p className="postDetail__notes">{recipeItem.post.description}</p>
                           </>
                         )}
                       </div>
@@ -185,7 +198,7 @@ export default function PostDetail(props) {
                         state: { from: from },
                       }}
                     >
-                      Edit recipe
+                      Redigera recept
                     </Link>
                   ) : (
                     <></>
@@ -211,7 +224,7 @@ export default function PostDetail(props) {
                   display: !user && !recipeItem.post.comments ? "none" : "flex",
                 }}
               >
-                <h3>Comments</h3>
+                <h3>Kommentarer</h3>
                 <div className="comments">
                   {/*Maps over the comments and sets the as pops to the comment component*/}
                   {recipeItem.post.comments ? (

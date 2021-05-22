@@ -6,7 +6,8 @@ export default function Post({
   username,
   id,
   photoUrl,
-  title
+  title,
+  displayName
 }) {
 
   //A single post card in the feed 
@@ -31,7 +32,7 @@ export default function Post({
           <span
             style={{ marginRight: "4px", fontSize: "12px", padding: "16px" }}
           >
-            By: {username}
+            Av: {displayName ? displayName : username}
           </span>
         </div>
       </Link>

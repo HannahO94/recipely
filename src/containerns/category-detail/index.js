@@ -28,7 +28,6 @@ export default function CategoryDetail(props) {
   
   }, []);
 
-
   useEffect(() => {
     categories &&
       categories.map((catItem) => {
@@ -36,16 +35,24 @@ export default function CategoryDetail(props) {
           setCategory(catItem);
         }
       }); 
-      console.log(categories)
-      console.log(categoryName)
   }, [categories]);
+
+  if(recipe === null) {
+    db.collection("posts")
+    .orderBy("timestamp", "desc")
+    .onSnapshot((snapshot) => {
+      setRecipe(
+        snapshot.docs.map((doc) => ({ id: doc.id, post: doc.data() }))
+      );
+    });
+  }
 
   return (
     <>
     {category && 
     <div className="category">
       <Navbar />
-      <Link to="/profile">Back</Link>
+      <Link className="backLink" to="/profile">Tillbaka</Link>
       
       <div className="collectionName">
         <h1 className="collectionNameh1">{categories && category.post.category}</h1>

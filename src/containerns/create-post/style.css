@@ -20,7 +20,7 @@
   padding: 34px;
   box-shadow: 0px 5px 5px 0px rgba(189, 189, 189, 0.75);
 }
-h1 {
+.createPost_heading {
   font-size: 25px;
   margin-bottom: 15px;
 }

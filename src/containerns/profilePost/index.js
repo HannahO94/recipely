@@ -13,7 +13,6 @@ export default function ProfilePost({ username, id, photoUrl, title }) {
   //deletes the recipe from the post colleciton in the database
   const deletePost = () => {      
     var imageRef = storage.refFromURL(photoUrl)
-    console.log(imageRef._delegate._location.path_)
     //if the image is the default/placeholder image it does not delete it. It only deletes the post with that id 
     //from the database
     if(imageRef._delegate._location.path_ === "images/no-image.png") {

@@ -7,15 +7,15 @@ import "./style.css";
 export const categoryList = [
   {
     id: 1,
-    name: "food",
+    name: "Mat",
   },
   {
     id: 2,
-    name: "desert",
+    name: "Baka",
   },
   {
     id: 3,
-    name: "drink",
+    name: "Dryck",
   },
   {
     id: 4,
@@ -41,11 +41,12 @@ export default function Feed() {
   }, []);
 
   console.log(user)
+
   return (
     <div className="feedpage">
       <div className="feed">
         <div className="feed__category">
-          <p>Sort by category</p>
+          <p>Sortera på kategori</p>
           
           {categoryList.map((categoryItem) => {
             //maps over all the static categories and prints them to the screen 
@@ -92,6 +93,7 @@ export default function Feed() {
                     description={post.description}
                     category={post.category}
                     comments={post.comments}
+                    displayName={post.displayName}
                   />
                 );
               }
@@ -113,6 +115,7 @@ export default function Feed() {
                     link={post.link}
                     category={post.category}
                     comments={post.comments}
+                    displayName={post.displayName}
                   />
                 );
               }

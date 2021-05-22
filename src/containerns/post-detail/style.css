@@ -14,7 +14,7 @@
 }
 .postDetail__wrap {
   background-color: white;
-  max-width: 700px;
+  max-width: 800px;
   width: 90vw;
   display: flex;
   flex-direction: column;
@@ -108,13 +108,14 @@
   box-shadow: 0px 0px 5px 0px rgba(189, 189, 189, 0.75);
 }
 .titleImageWrapper {
+  margin-top: 30px;
   display: flex;
   width: 100%;
   justify-content: space-evenly;
   align-items: center;
 }
 .postDetail__ingredients {
-  width: 80%;
+  width: 90%;
 }
 .heading {
   font-weight: bold;
@@ -128,8 +129,18 @@ ul {
   width: 100%;
 }
 .postDetail__ingredientItem {
-  margin: 3px;
+  margin:  5px 0;
 }
 .postDetail__description {
+  line-height: 1.4;
+  white-space: pre-wrap;
+}
+.postDetail__notes {
   line-height: 1.2;
+  white-space: pre-wrap;
+}
+.photoingredients {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
 }

@@ -3,11 +3,10 @@
   min-height: 100vh;
 }
 .category__list {
-  padding: 50px;
+  padding: 30px 50px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin-top: 40px;
 }
 .collectionName {
   margin-top: 50px;
@@ -18,4 +17,14 @@
   font-family: "Tangerine", cursive;
   font-size: 50px;
   text-transform: capitalize;
+}
+.backLink {
+  text-decoration: none;
+  color: black;
+}
+.backLink:visited {
+  color: black;
+}
+.backLink:active {
+  color: black;
 }

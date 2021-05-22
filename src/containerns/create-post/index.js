@@ -119,6 +119,7 @@ export default function CreatePost() {
                 public: isPublic,
                 portions: portions,
                 username: user.email.replace("@gmail.com", ""),
+                displayName: user.displayName,
                 profileUrl: user.photoURL,
               });
               setDescription("");
@@ -153,6 +154,7 @@ export default function CreatePost() {
         public: isPublic,
         portions: portions,
         username: user.email.replace("@gmail.com", ""),
+        displayName: user.displayName,
         profileUrl: user.photoURL,
       });
       setDescription("");
@@ -180,6 +182,7 @@ export default function CreatePost() {
         category: category,
         public: isPublic,
         username: user.email.replace("@gmail.com", ""),
+        displayName: user.displayName,
         profileUrl: user.photoURL,
       });
       setLink("");
@@ -239,12 +242,12 @@ export default function CreatePost() {
         )}
         {user ? (
           <div className="createPost__loggedIn">
-            <h1>New recipe</h1>
+            <h1 className="createPost_heading">Nytt recept</h1>
             {/* If the user has selected to add a recipe with type write this form is shown */}
             {recipeType === "write" ? (
               <div>
                 <div className="createPost__inputwrapper">
-                  <label htmlFor="title">Recepie name</label>
+                  <label htmlFor="title">Recept namn</label>
                   <input
                     required
                     type="text"
@@ -254,7 +257,7 @@ export default function CreatePost() {
                     autoFocus
                   />
                   <label className="selectLabel" htmlFor="collection">
-                    Choose a collection:
+                    Välj en samling:
                   </label>
                   {/* If the user has added userCategories/user collections thay can select one here, otherwise it gets
                    added in unsorted*/}
@@ -283,7 +286,7 @@ export default function CreatePost() {
                       })}
                   </select>
                   <label className="selectLabel2" htmlFor="category">
-                    Choose a category:
+                    Välj en kategori:
                   </label>
                     {/* The user can select a category for the recepie */}
                   <select
@@ -307,14 +310,14 @@ export default function CreatePost() {
                   </select>
                     {/* The user can select if the recipe is public or private*/}
                   <div className="radio">
-                    <label htmlFor="public">Public</label>
+                    <label htmlFor="public">Publikt</label>
                     <input
                       type="radio"
                       name="public"
                       onChange={(e) => setIsPublic(true)}
                       checked={isPublic}
                     />
-                    <label htmlFor="private">Private</label>
+                    <label htmlFor="private">Privat</label>
                     <input
                       type="radio"
                       name="private"
@@ -324,7 +327,7 @@ export default function CreatePost() {
                   </div>
                     {/* The user can assign how many portions the reeipe is for*/}
                   <div className="portions">
-                    <label className="portionsLabel">Portions</label>
+                    <label className="portionsLabel">Portioner</label>
                     <br />
                     <input
                       type="number"
@@ -354,7 +357,7 @@ export default function CreatePost() {
                     {/* Three input fields for adding a new ingredient, ingredient, amount and measure*/}
                   <div className="createPost__ingredientwrapper">
                     <div>
-                      <label htmlFor="ingredient">Ingredient</label>
+                      <label htmlFor="ingredient">Ingrediens</label>
                       <input
                         type="text"
                         name="ingredient"
@@ -363,7 +366,7 @@ export default function CreatePost() {
                       />
                     </div>
                     <div>
-                      <label htmlFor="amount">Amount</label>
+                      <label htmlFor="amount">Mängd</label>
                       <input
                         type="number"
                         name="amount"
@@ -374,7 +377,7 @@ export default function CreatePost() {
                       />
                     </div>
                     <div>
-                      <label htmlFor="measure">Measure</label>
+                      <label htmlFor="measure">Mått</label>
                       <input
                         type="text"
                         name="measure"
@@ -385,7 +388,7 @@ export default function CreatePost() {
                       {/*When the user clicks add button the function handleSubmitIngredient is run to add ingredient 
                       to the list */}
                     <div className="createPost__ingredientSubmit">
-                      <label>Add</label>
+                      <label>Lägg till</label>
                       <button
                         className="createPost__ingredientSubmitBtn"
                         onClick={handleSubmitIngredient}
@@ -397,12 +400,12 @@ export default function CreatePost() {
                 </div>
                 {/*The user can add a description*/}
                 <div className="createPost_loggedInCenter">
-                  <label>Description</label>
+                  <label>Beskrivning</label>
                   <textarea
                     required
                     className="createPost__textarea"
                     rows="3"
-                    placeholder="enter description here..."
+                    placeholder="Skriv beskrivningen här..."
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                   ></textarea>
@@ -440,7 +443,7 @@ export default function CreatePost() {
                     }
                     // style={{ color: description ? "#000" : "lightgrey" }}
                   >
-                    Upload
+                    Skapa recept
                   </button>
                 </div>
               </div>
@@ -448,7 +451,7 @@ export default function CreatePost() {
               <div>
                  {/* If the user has selected to add a recipe with type link this form is shown */}
                 <div>
-                  <label>Recipe title</label>
+                  <label>Recept namn</label>
                   <input
                     className="textInput"
                     type="text"
@@ -458,7 +461,7 @@ export default function CreatePost() {
                 </div>
                   {/* This is where the user pastes the link to the recipe*/}
                 <div>
-                  <label>Paste a link here</label>
+                  <label>Klistra in länk</label>
                   <input
                     required
                     className="textInput"
@@ -470,7 +473,7 @@ export default function CreatePost() {
                   {/* If the user has added userCategories/user collections thay can select one here, otherwise it gets
                    added in unsorted*/}
                 <label className="selectLabel" htmlFor="collection">
-                  Choose a collection:
+                  Välj en samling:
                 </label>
                 <select
                   name="collection"
@@ -499,7 +502,7 @@ export default function CreatePost() {
                   {/* The user can select a category for the recepie */}
                 <div className="selectLabel">
                   <label className="selectLabel" htmlFor="category">
-                    Choose a category:
+                    Välj en kategori:
                   </label>
                   <select
                     name="category"
@@ -520,14 +523,14 @@ export default function CreatePost() {
                 </div>
                  {/* The user can select if the recipe is public or private*/}
                 <div className="radio2">
-                  <label htmlFor="public">Public</label>
+                  <label htmlFor="public">Publik</label>
                   <input
                     type="radio"
                     name="public"
                     onChange={(e) => setIsPublic(true)}
                     checked={isPublic}
                   />
-                  <label htmlFor="private">Private</label>
+                  <label htmlFor="private">Privat</label>
                   <input
                     type="radio"
                     name="private"
@@ -536,11 +539,11 @@ export default function CreatePost() {
                   />
                 </div>
                  {/* The user can add some notes about the recipe */}
-                <label>Notes</label>
+                <label>Anteckningar</label>
                 <textarea
                   className="createPost__textarea"
                   rows="3"
-                  placeholder="enter notes here..."
+                  placeholder="Skriv anteckningar här..."
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
                 ></textarea>
@@ -549,7 +552,7 @@ export default function CreatePost() {
                     className="createPost__uploadBtn"
                     onClick={handleUpload}
                   >
-                    Upload
+                    Skapa recept
                   </button>
                 </div>
               </div>

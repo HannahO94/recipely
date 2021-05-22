@@ -15,7 +15,7 @@ export default function SignInBtn() {
 
     return (
         <div className="signInBtn" onClick={signOutBtnClick}>
-            <p>Sign out</p>
+            <p>Logga ut</p>
         </div>
     )
 }

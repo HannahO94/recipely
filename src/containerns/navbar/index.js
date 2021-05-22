@@ -12,11 +12,6 @@ export default function Navbar() {
     if(!user){
     auth.getRedirectResult()
       .then((result) => {
-        // if (result.credential) {
-        //   /** @type {firebase.auth.OAuthCredential} */
-        //   var credential = result.credential;
-        //   var token = credential.accessToken;
-        // }
       // The signed-in user info.
       setUser(result.user)
   

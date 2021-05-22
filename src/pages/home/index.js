@@ -12,7 +12,7 @@ export default function Home() {
       <div className="home__linkdiv">
            {/*the add new button */}
         <Link className="home__link" to="/new-recipe">
-          Add a new recipe <span className="home__linkspan">+</span>
+          Skapa nytt recept <span className="home__linkspan">+</span>
         </Link>
       </div>
          {/*and the feed*/}

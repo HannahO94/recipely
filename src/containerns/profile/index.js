@@ -14,12 +14,15 @@ export default function Profile() {
   const [categories, setCategories] = useState(null);
   const [isShowing, setIsShowing] = useState("collections");
   let username;
+  let displayName;
   let history = useHistory();
   const categoryArray = [];
 
   //If the user is not logged in they are redirected to the startpage
   if (user) {
     username = user.email.replace("@gmail.com", "");
+    displayName = user.displayName
+    // email.replace("@gmail.com", "");
   } else {
     history.push("/");
   }
@@ -53,21 +56,31 @@ export default function Profile() {
     }
   }, [categories]);
 
+  if(recipe === null) {
+    db.collection("posts")
+    .orderBy("timestamp", "desc")
+    .onSnapshot((snapshot) => {
+      setRecipe(
+        snapshot.docs.map((doc) => ({ id: doc.id, post: doc.data() }))
+      );
+    });
+  }
+
   return (
     <div>
       <Navbar />
       <div className="profilePage">
         <div className="profileInfo">
           <div>
-            <h1>{user && username}</h1>
+            <h1 className="userDisplayName">{user && displayName}</h1>
             {/* Difirent add new button are shown depending on if the user is looking at collections or recipes */}
             {isShowing === "collections" ? (
               <Link className="profile__link" to="/new-category">
-                Add new collection <span className="home__linkspan">+</span>
+                Skapa ny samling <span className="home__linkspan">+</span>
               </Link>
             ) : (
               <Link className="home__link" to="/new-recipe">
-                Add a new recipe <span className="home__linkspan">+</span>
+                Skapa nytt recept <span className="home__linkspan">+</span>
               </Link>
             )}
           </div>
@@ -86,7 +99,7 @@ export default function Profile() {
                   isShowing === "collections" ? "#1e83c2" : "#24a0ed",
               }}
             >
-              Collections
+              Samlingar
             </h2>
             <h2
               className="profile__heading__btn"
@@ -96,14 +109,14 @@ export default function Profile() {
                   isShowing === "recipes" ? "#1e83c2" : "#24a0ed",
               }}
             >
-              Recipes
+              Recept
             </h2>
           </div>
           {/*Diffirent page heading if depending on what is showing, collections or recipes */}
           {isShowing === "collections" ? (
-            <h3 className="collectionsHeaderText">My Collections</h3>
+            <h3 className="collectionsHeaderText">Mina samlingar</h3>
           ) : (
-            <h3 className="collectionsHeaderText">My Recipes</h3>
+            <h3 className="collectionsHeaderText">Mina recept</h3>
           )}
           <div
             className={
