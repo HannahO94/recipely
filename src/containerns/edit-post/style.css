@@ -1,0 +1,109 @@
+.edit {
+  min-height: 100vh;
+}
+.edit__outerWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.edit__post {
+  background-color: white;
+  max-width: 650px;
+  width: 90vw;
+  padding: 26px;
+  margin: 30px 10px 0 10px;
+  border-radius: 6px;
+  box-shadow: 0px 0px 5px 0px rgba(189, 189, 189, 0.75);
+  display: flex;
+  flex-direction: column;
+}
+input[type="text"] {
+  padding: 12px 20px 12px 15px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+}
+.edit__inputSmaller {
+  width: 100px;
+}
+input[type="text"]:focus {
+  outline: none;
+}
+select {
+  width: 100%;
+  padding: 12px 20px;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+}
+.edit__textarea {
+  width: 100%;
+  height: 150px;
+  padding: 12px 20px;
+  margin-top: 20px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  resize: none;
+  font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.edit__textarea:focus {
+  outline: none;
+}
+.createPost__uploadBtn {
+  border: none;
+  text-decoration: none;
+  background-color: #05b41c;
+  max-width: 150px;
+  text-align: center;
+  padding: 8px 16px;
+  border-radius: 4px;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.edit__listItem {
+  list-style-type: none;
+}
+.edit__text {
+  margin: 20px 0 15px 0;
+}
+.edit__addIngredient {
+  display: flex;
+}
+.edit__ingredientSubmitBtn {
+  padding: 18px 6px 0 6px;
+  margin: 15px 5px;
+  text-decoration: none;
+  background-color: white;
+  text-align: center;
+  border: none;
+  border-radius: 4px;
+  color: #05b41c;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  outline: none;
+}
+.edit__deleteIngredientBtn {
+  padding: 4px 6px 0 6px;
+  text-decoration: none;
+  background-color: white;
+  text-align: center;
+  border: none;
+  border-radius: 4px;
+  color: #ee0b0b;
+  font-size: 26px;
+  font-weight: bold;
+  cursor: pointer;
+}
+#image-edit-preview {
+  max-height: 80px;
+  margin: 12px 0;
+  border-radius: 4px;
+}

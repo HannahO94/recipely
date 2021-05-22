@@ -1,0 +1,175 @@
+.outerWrap {
+  background-color: #e6e6e6;
+  height: 100vh;
+}
+.createPost {
+  background-color: #f8f8f8;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+.createPost__loggedIn {
+  background-color: white;
+  width: 100%;
+  max-width: 600px;
+  border-radius: 8px;
+  margin-top: -5px;
+  padding: 34px;
+  box-shadow: 0px 5px 5px 0px rgba(189, 189, 189, 0.75);
+}
+h1 {
+  font-size: 25px;
+  margin-bottom: 15px;
+}
+.createPost__inputwrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.createPost__imageUpload > input {
+  display: none;
+}
+.createPost__uploadBtn {
+  border: none;
+  text-decoration: none;
+  background-color: #05b41c;
+  max-width: 150px;
+  text-align: center;
+  padding: 8px 16px;
+  border-radius: 4px;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.createPost__loggedInBottom {
+  display: flex;
+  justify-content: space-between;
+}
+.createPost__textarea {
+  width: 100%;
+  height: 150px;
+  padding: 12px 20px;
+  margin: 5px 0;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  resize: none;
+  font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.createPost__textarea:focus {
+  outline: none;
+}
+#image-preview {
+  display: none;
+  max-height: 80px;
+  margin: 12px 0;
+  border-radius: 4px;
+}
+.createPost__ingredientwrapper {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+}
+.createPost__text {
+  margin-top: 20px;
+}
+input[type="text"] {
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+}
+input[type="text"]:focus {
+  outline: none;
+}
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+input[type="number"] {
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+}
+input[type="number"]:focus {
+  outline: none;
+}
+select {
+  width: 100%;
+  padding: 12px 20px;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+}
+/* .createPost__ingredientSubmit {
+  display: flex;
+  align-items: center;
+} */
+.createPost__ingredientSubmitBtn {
+  padding: 4px 6px;
+  margin: 15px 5px;
+  text-decoration: none;
+  background-color: white;
+  text-align: center;
+  border: none;
+  border-radius: 4px;
+  color: #05b41c;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.outerWrap__btn {
+  border: none;
+  background-color: #e6e6e6;
+  padding: 6px;
+  border-radius: 4px;
+  margin: 0 3px;
+  cursor: pointer;
+}
+@media screen and (max-width: 620px) {
+  .createPost__ingredientwrapper {
+    flex-direction: column;
+  }
+  input[type="text"] {
+    width: 100%;
+  }
+}
+.selectLabel {
+  margin-top: 5px;
+  margin-bottom: 7px;
+}
+.selectLabel2 {
+  margin-top: 10px;
+  margin-bottom: 7px;
+}
+.radio {
+  margin-top: 10px;
+}
+.portions {
+  margin-top: 10px;
+}
+.textInput {
+  width: 100%;
+}
+.radio2 {
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+.uploadbutton {
+  display: flex;
+  justify-content: flex-end;
+}
+input[type="radio"] {
+  margin: 0 10px 0 5px;
+}

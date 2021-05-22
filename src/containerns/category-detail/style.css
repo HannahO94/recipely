@@ -1,0 +1,21 @@
+.category {
+  background-color: #f8f8f8;
+  min-height: 100vh;
+}
+.category__list {
+  padding: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 40px;
+}
+.collectionName {
+  margin-top: 50px;
+  width: 100%;
+  text-align: center;
+}
+.collectionNameh1 {
+  font-family: "Tangerine", cursive;
+  font-size: 50px;
+  text-transform: capitalize;
+}

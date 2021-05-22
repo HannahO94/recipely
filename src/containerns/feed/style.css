@@ -1,0 +1,46 @@
+.feedpage {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+.feed {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 50px;
+  padding: 50px 20px 100px 20px;
+  max-width: 1000px;
+  background-color: #f8f8f8;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+}
+.feed__category {
+  width: 100%;
+  text-align: center;
+}
+.feed__category__button {
+  max-width: 150px;
+  text-align: center;
+  padding: 8px 16px;
+  margin: 5px;
+  border-radius: 6px;
+  border: none;
+  color: white;
+  background-color: #24a0ed;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  outline: none;
+  font-weight: bold;
+}
+
+@media screen and (max-width: 800px) {
+  .feed {
+    padding: 10px;
+  }
+}
