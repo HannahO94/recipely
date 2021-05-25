@@ -37,3 +37,11 @@
 .commentInput__btn:focus {
   outline: none;
 }
+@media screen and (max-width: 500px) {
+  .commentInput__textarea{
+    padding: 16px 0 16px 5px;
+    width: 90%;
+    align-self: center;
+  }
+
+}

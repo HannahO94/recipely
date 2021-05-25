@@ -145,3 +145,14 @@
     padding: 50px 20px 100px 20px;
   }
 }
+@media screen and (max-width: 500px) {
+  .profilePage {
+    background-color: #f8f8f8;
+  }
+  .profile__list {
+    box-shadow: none;
+  }
+  .collection__list {
+    background-color: #f8f8f8
+  }
+}

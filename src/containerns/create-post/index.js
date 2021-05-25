@@ -75,7 +75,14 @@ export default function CreatePost() {
       setIngredientList([]);
     }
   };
-
+ 
+  const inputSearchOnKeyDown = (event) => {
+   
+    if (event.key === 'Enter') {
+      handleSubmitIngredient()
+      document.getElementById("ingredient").focus()
+    }
+  }
   //The function that handles the upload of a new recipe, it is divided in three parts for the difirent possible scenarios
   // Write recipe with image, write recipe without image and link recipe
   const handleUpload = () => {
@@ -249,6 +256,7 @@ export default function CreatePost() {
                 <div className="createPost__inputwrapper">
                   <label htmlFor="title">Recept namn</label>
                   <input
+                    className="textInput"
                     required
                     type="text"
                     name="title"
@@ -268,22 +276,15 @@ export default function CreatePost() {
                   >
                     {collectionData &&
                       collectionData.map((coll) => {
-                        if (
-                          coll.post.username ===
-                          user.email.replace("@gmail.com", "")
-                        ) {
+                        if (coll.post.username === user.email.replace("@gmail.com", "")) {
                           return (
                             <option key={coll.id} value={coll.post.category}>
                               {coll.post.category}
                             </option>
                           );
-                        }
-                        // else {
-                        //   return (
-                        //       <option value="Unsorted">Unsorted</option>
-                        //   )
-                        // }
+                        }                       
                       })}
+                      {/* <option value="Unsorted"><button onClick={() => console.log("click")}>Add new</button></option>  */}
                   </select>
                   <label className="selectLabel2" htmlFor="category">
                     Välj en kategori:
@@ -356,16 +357,18 @@ export default function CreatePost() {
                   </div>
                     {/* Three input fields for adding a new ingredient, ingredient, amount and measure*/}
                   <div className="createPost__ingredientwrapper">
-                    <div>
+                    <div className="createPost__ingredientinputwrapper">
                       <label htmlFor="ingredient">Ingrediens</label>
                       <input
+                        id="ingredient"
+                        className="createPost__ingredientinput"
                         type="text"
                         name="ingredient"
                         value={ingredient}
                         onInput={(e) => setIngredient(e.target.value)}
                       />
                     </div>
-                    <div>
+                    <div className="createPost__ingredientinputwrapper">
                       <label htmlFor="amount">Mängd</label>
                       <input
                         type="number"
@@ -376,13 +379,15 @@ export default function CreatePost() {
                         onInput={(e) => setAmount(e.target.value)}
                       />
                     </div>
-                    <div>
+                    <div className="createPost__ingredientinputwrapper">
                       <label htmlFor="measure">Mått</label>
                       <input
+                       className="createPost__ingredientinput"
                         type="text"
                         name="measure"
                         value={measure}
                         onInput={(e) => setMeasure(e.target.value)}
+                        onKeyDown={(e) => inputSearchOnKeyDown(e)} 
                       />
                     </div>
                       {/*When the user clicks add button the function handleSubmitIngredient is run to add ingredient 
@@ -441,7 +446,6 @@ export default function CreatePost() {
                         ? false
                         : true
                     }
-                    // style={{ color: description ? "#000" : "lightgrey" }}
                   >
                     Skapa recept
                   </button>

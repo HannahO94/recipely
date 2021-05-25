@@ -112,10 +112,6 @@ select {
   border: 2px solid #ccc;
   border-radius: 4px;
 }
-/* .createPost__ingredientSubmit {
-  display: flex;
-  align-items: center;
-} */
 .createPost__ingredientSubmitBtn {
   padding: 4px 6px;
   margin: 15px 5px;
@@ -141,8 +137,15 @@ select {
   .createPost__ingredientwrapper {
     flex-direction: column;
   }
-  input[type="text"] {
+  .textInput {
     width: 100%;
+  }
+  .createPost__ingredientinputwrapper {
+    display: flex;
+    flex-direction: column;
+  }
+  .createPost__ingredientinput {
+    width: 50%;
   }
 }
 .selectLabel {

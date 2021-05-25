@@ -1,5 +1,6 @@
 import  { createContext, useEffect, useState } from 'react'
 import { auth } from '../firebase'
+import "./spinner.css"
 
 export const UserContext = createContext()
 export const UserContextProvider = (props) => {
@@ -17,7 +18,14 @@ export const UserContextProvider = (props) => {
     }, [])
 
     if (pending) {
-      return <>Loading </>
+      return   (
+       <div className="spinner-wrapper">
+        <div className="spinner">
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+      )
     }
   //Defines context that is provided in the userContextProvider
     return (

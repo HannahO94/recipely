@@ -42,9 +42,9 @@ export default function CreateCategory() {
       )}
       <div className="createCategory">
         <div className="createCategory__wrapper">
-          <h1>Lägg till ny samling</h1>
+          <h1 className="createCategory__heading">Lägg till ny samling</h1>
           <label htmlFor="categoryname">Samlingens namn</label>
-          <input
+          <input className="category__input"
             type="text"
             value={category}
             onChange={(e) => setCategory(e.target.value)}

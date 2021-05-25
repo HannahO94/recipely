@@ -48,8 +48,8 @@ export default function Profile() {
     if (categoryArray.length === 0) {
       db.collection("categories").add({
         timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-        category: "Unsorted",
-        slug: "unsorted",
+        category: "Osorterade",
+        slug: "osorterade",
         username: user.email.replace("@gmail.com", ""),
         profileUrl: user.photoURL,
       });
@@ -129,7 +129,7 @@ export default function Profile() {
               categories.map((category) => {
                 if (category.post.username === username) {
                   return (
-                    <div className="profile__itemWrapper">
+                    <div key={category.id} className="profile__itemWrapper">
                       <div className="profile__item">
                         <Link
                           to={`/profile/${category.id}`}

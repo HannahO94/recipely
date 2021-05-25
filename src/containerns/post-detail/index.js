@@ -61,7 +61,7 @@ export default function PostDetail(props) {
           if (recipeItem.id === id) {
             return (
             //The recipe is displayed diffirently depending on if its a type write or type link
-              <div className="postDetail__outerWrap">
+              <div key={recipeItem.id} className="postDetail__outerWrap">
                 <div
                   className={
                     recipeItem.post.type === "write"
@@ -72,13 +72,7 @@ export default function PostDetail(props) {
                 >
                   {recipeItem.post.type === "link" ? (
                     <div>
-                      <h1 className="postDetail__title">
-                        {recipeItem.post.title}
-                      </h1>
-                      <img
-                        className="postDetail__img"
-                        src={recipeItem.post.photoUrl}
-                      />
+                   
                     </div>
                   ) : (
                     <>
@@ -167,17 +161,25 @@ export default function PostDetail(props) {
                       </div>
                     </div>
                   ) : (
-                    <div>
+                    <div className="recipe__link">
+                      <div className="edit__linkImage">
+                        <img
+                          className="postDetail__img"
+                          src={recipeItem.post.photoUrl}
+                          />
+                      </div>
                       {/*If the type is link it is displayed difirently. It shows the link to the recipe and also shows 
                       the recipe in an iframe*/}
                       <div>
-                        <h1>{recipeItem.post.title}</h1>
-                        <p>
+                        <h1 className="editItem__postTitle">{recipeItem.post.title}</h1>
+                        <p className="recipe__linkInstructions">
                           Receptet är nedan, klicka på länken om det inte är synligt
                         </p>
+                        <div className="recipe__linkInstructions">
                         <a href={recipeItem.post.link} target="_blank">
                           {recipeItem.post.link}
                         </a>
+                        </div>
                         {recipeItem.post.description && (
                           <>
                             <p>Antecklingar</p>
@@ -189,6 +191,7 @@ export default function PostDetail(props) {
                   )}
                   {/*If the user that is looking at the recipe is the same as the one that created the recepie the edit
                    recipe link is shown*/}
+                   <div className="edit__link">
                   {user &&
                   user.email.replace("@gmail.com", "") ===
                     recipeItem.post.username ? (
@@ -203,6 +206,7 @@ export default function PostDetail(props) {
                   ) : (
                     <></>
                   )}
+                  </div>
                 </div>
                 {recipeItem.post.type === "link" && (
                   <div className="frame__div">
@@ -218,7 +222,7 @@ export default function PostDetail(props) {
           if (recipeItem.id === id) {
             return (
               //if there are any comments added to the recipe they are shown else not
-              <div
+              <div key={recipeItem.id}
                 className="commentswrapper"
                 style={{
                   display: !user && !recipeItem.post.comments ? "none" : "flex",
@@ -228,10 +232,12 @@ export default function PostDetail(props) {
                 <div className="comments">
                   {/*Maps over the comments and sets the as pops to the comment component*/}
                   {recipeItem.post.comments ? (
-                    recipeItem.post.comments.map((comment) => (
+                    recipeItem.post.comments.map((comment, index) => (
                       <Comment
+                        key={index}
                         username={comment.username}
                         caption={comment.comment}
+                        displayName={comment.displayName}
                       />
                     ))
                   ) : (

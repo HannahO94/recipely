@@ -40,8 +40,6 @@ export default function Feed() {
       });
   }, []);
 
-  console.log(user)
-
   return (
     <div className="feedpage">
       <div className="feed">
