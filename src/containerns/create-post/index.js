@@ -106,10 +106,7 @@ export default function CreatePost() {
         () => {
           // this function is run when the image is uploaded, it gets the images downoald url and uploads the recipe
           //To the db collection posts with all the data that the user entered and sets a timestamp
-          storage
-            .ref("images")
-            .child(`${imageName}.jpg`)
-            .getDownloadURL()
+          storage.ref("images").child(`${imageName}.jpg`).getDownloadURL()
             .then((imageUrl) => {
               db.collection("posts").add({
                 timestamp: firebase.firestore.FieldValue.serverTimestamp(),

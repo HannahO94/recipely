@@ -39,6 +39,8 @@ export default function PostDetail(props) {
       ? (num.toFixed(2) / oldPoritons) * portions
       : amount;
   };
+
+  
   if(recipe === null) {
     db.collection("posts")
     .orderBy("timestamp", "desc")
