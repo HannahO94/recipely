@@ -10,7 +10,7 @@ import makeid from "../../helper/functions";
 import CreateIcon from "@material-ui/icons/Create";
 import LinkIcon from "@material-ui/icons/Link";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
-
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import firebase from "firebase";
 import { Navbar } from "..";
 
@@ -50,6 +50,7 @@ export default function CreatePost() {
   // it also includes the previous items in that list not to overwrite them
   function handleSubmitIngredient() {
     ingredientItem = {
+      id: ingredient.replace(" ", "").replace("å", "a").replace("ä", "a").replace("ö", "o").toLowerCase().slice(0, 10) + ingredientList.length,
       ingredient: ingredient,
       amount: amount,
       measure: measure,
@@ -206,6 +207,15 @@ export default function CreatePost() {
     });
   }, []);
 
+  const handleOnDragEnd = (result) => {
+    if(!result.destination) return 
+    const items = Array.from(ingredientList)
+    const [reorderedItem] = items.splice(result.source.index, 1) 
+    items.splice(result.destination.index, 0, reorderedItem)
+
+    setIngredientList(items)
+  }
+
   return (
     <div className="outerWrap">
       <Navbar />
@@ -337,21 +347,32 @@ export default function CreatePost() {
                     />
                   </div>
                     {/* Shows a list of the added ingredients*/}
-                  <div>
-                    {ingredientList &&
-                      ingredientList.map((ingredient) => {
-                        return (
-                          <p key={ingredient.ingredient}>
-                            {ingredient.ingredient} {ingredient.amount}{" "}
-                            {ingredient.measure}{" "}
-                            <DeleteIcon
-                              className="edit__deleteIngredientBtn"
-                              onClick={deleteIngredient}
-                            />
-                          </p>
-                        );
-                      })}
-                  </div>
+                  <DragDropContext onDragEnd={handleOnDragEnd}>
+                  <Droppable droppableId="create-ingredients">
+                  {(provided) => (
+                    <div {...provided.droppableProps} ref={provided.innerRef}>
+                      {ingredientList &&
+                        ingredientList.map((ingredient, i) => {
+                    
+                          return (
+                            <Draggable key={ingredient.id} draggableId={ingredient.id} index={i}>
+                            {(provided) => (
+                              <p key={ingredient.ingredient}  ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
+                                {ingredient.ingredient} {ingredient.amount}{" "}
+                                {ingredient.measure}{" "}
+                                <DeleteIcon
+                                  className="edit__deleteIngredientBtn"
+                                  onClick={deleteIngredient}
+                                />
+                              </p>
+                              )}
+                            </Draggable>
+                          )
+                        })}
+                      </div>
+                      )}
+                      </Droppable>
+                      </DragDropContext>
                     {/* Three input fields for adding a new ingredient, ingredient, amount and measure*/}
                   <div className="createPost__ingredientwrapper">
                     <div className="createPost__ingredientinputwrapper">

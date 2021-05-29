@@ -3,7 +3,6 @@ import "./App.css";
 import { CategoryDetail, CreateCategory, CreatePost, EditPost, PostDetail, Profile } from "./containerns";
 import { UserContextProvider } from "./contexts/user";
 import { Home } from "./pages";
-import PrivateRoute from "./PrivateRoute";
 
 function App() {
   //App.js only contains the routes to the other pages,, the component Home is displayed as first component

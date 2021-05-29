@@ -6,10 +6,10 @@ import AddCircleIcon from "@material-ui/icons/AddCircle";
 import AddAPhotoIcon from "@material-ui/icons/AddAPhoto";
 import DeleteIcon from "@material-ui/icons/Delete";
 import { db, storage } from "../../firebase";
-import firebase from "firebase";
 import makeid from "../../helper/functions";
 import { categoryList } from "../feed";
 import { Link, useHistory } from "react-router-dom";
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 export default function EditPost(props) {
   const id = props.match.params.id;
@@ -32,7 +32,6 @@ export default function EditPost(props) {
   const [collectionData, setCollectionData] = useState([]);
   const [link, setLink] = useState("");
   const [recipeType, setRecipeType] = useState("");
-  const [newImage, setNewImage] = useState(null);
   //This variable is used for navigation backwards
   const from = props.location.state.from
     ? props.location.state.from
@@ -145,6 +144,7 @@ export default function EditPost(props) {
   // it also includes the previous items in that list not to overwrite them
   const handleSubmitIngredient = () => {
     ingredientItem = {
+      id: ingredient.replace(" ", "").replace("å", "a").replace("ä", "a").replace("ö", "o").toLowerCase().slice(0, 10) + ingredientList.length,
       measure: measure,
       ingredient: ingredient,
       amount: amount,
@@ -206,6 +206,15 @@ export default function EditPost(props) {
       );
     });
   }, []);
+  
+  const handleOnDragEnd = (result) => {
+    if(!result.destination) return 
+    const items = Array.from(updateList)
+    const [reorderedItem] = items.splice(result.source.index, 1) 
+    items.splice(result.destination.index, 0, reorderedItem)
+
+    setUpdateList(items)
+  }
 
   return (
     <div className="edit">
@@ -293,22 +302,33 @@ export default function EditPost(props) {
                 />
               </div>
               <p className="edit__text">Ingredienser</p>
-              <ul>
-                   {/*maps over the exsisting ingredients, user can remove ingridients*/}
-                {updateList &&
-                  updateList.map((ingredientItem, i) => {
-                    return (
-                      <li className="edit__listItem" key={i}>
-                        {ingredientItem.ingredient} {ingredientItem.amount}{" "}
-                        {ingredientItem.measure}{" "}
-                        <DeleteIcon
-                          className="edit__deleteIngredientBtn"
-                          onClick={deleteIngredient}
-                        />
-                      </li>
-                    );
-                  })}
-              </ul>
+              <DragDropContext onDragEnd={handleOnDragEnd}>
+                <Droppable droppableId="edit-ingredients">
+                {(provided) => (
+                  <ul className="ingredients" {...provided.droppableProps} ref={provided.innerRef}>
+                      {/*maps over the exsisting ingredients, user can remove ingridients*/}
+                    {updateList &&
+                      updateList.map((ingredientItem, i) => {
+                        return (
+                          <Draggable key={ingredientItem.id} draggableId={ingredientItem.id} index={i}>
+                            {(provided) => (
+                          <li className="edit__listItem" ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
+                            {ingredientItem.ingredient} {ingredientItem.amount}{" "}
+                            {ingredientItem.measure}{" "}
+                            <DeleteIcon
+                              className="edit__deleteIngredientBtn"
+                              onClick={deleteIngredient}
+                            />
+                          </li>
+                            )}
+                          </Draggable>
+                        );
+                      })}
+                      {provided.placeholder}
+                  </ul>
+                  )}
+                 </Droppable>
+              </DragDropContext>
               <p className="edit__text">Lägg till ny ingrediens</p>
               <div className="edit__addIngredient">
                 <div>
@@ -407,7 +427,7 @@ export default function EditPost(props) {
                     ) {
                       userCollectionArray.push(coll.post.category);
                       return (
-                        <option value={coll.post.category}>
+                        <option key={coll.post.category.id} value={coll.post.category}>
                           {coll.post.category}
                         </option>
                       );

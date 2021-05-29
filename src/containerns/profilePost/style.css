@@ -50,18 +50,20 @@
 }
 .profilePost__title {
   text-align: center;
+  margin-top: 15px;
 }
 
 .profilePost__heading {
   font-weight: 400;
 }
-.delete-icon {
+/* .delete-icon {
   color: #808080;
-}
+} */
 .edit-icon {
-  border: 2px solid black;
+  border: none;
   color: black;
   border-radius: 4px;
+  font-size: 30px;
 }
 .editIconWrapper {
   width: 100%;

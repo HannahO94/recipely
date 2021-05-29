@@ -28,15 +28,15 @@ export default function PostDetail(props) {
 
   //This runs everytime the portions is updated, checks if the amount is 0. something, then the calculation is diffirent
   const calculateIngredient = (portions, amount, oldPoritons) => {
-    let num = parseInt(amount);
+    let num = parseFloat(amount).toFixed(2);
     if (amount.includes(".") && amount.charAt(0) === "0") {
-      let twoPlacedFloat = parseFloat(amount).toFixed(2);
+      // let twoPlacedFloat = parseFloat(amount).toFixed(2);
       return portions && amount
-        ? (twoPlacedFloat * portions) / oldPoritons
+        ? (num * portions) / oldPoritons
         : amount;
     }
     return portions && amount
-      ? (num.toFixed(2) / oldPoritons) * portions
+      ? ( num / oldPoritons ) * portions
       : amount;
   };
 

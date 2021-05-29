@@ -46,7 +46,7 @@ export default function ProfilePost({ username, id, photoUrl, title }) {
         <div className="profilePost__headerLeft">
         </div>
        {/*The user can click on the delete icon to delete an image */}
-        {user && user.email.replace("@gmail.com", "") === username ? <button onClick={deletePost} className="post__delete"><DeleteIcon className="delete-icon"></DeleteIcon></button> : <></>}
+        {user && user.email.replace("@gmail.com", "") === username ? <button onClick={deletePost} className="post__delete"><DeleteIcon className="delete-icon"></DeleteIcon></button> : <></>}  
       </div>
       <Link className="profilePost__link" to={{pathname: `/recipe/${id}`, state:{ from: "/profile"}}}>
         <div className="profilePost__center" style={{backgroundImage: `url(${photoUrl})`}}>
@@ -54,7 +54,7 @@ export default function ProfilePost({ username, id, photoUrl, title }) {
         <div className="profilePost__title">
           <h2 className="profilePost__heading">{title}</h2>
         </div>
-      </Link>
+        </Link>      
       <div className="editIconWrapper">
       {/*Link to the edit recipe page, send the recipes id as a prop in the URL */}
       <Link to={{pathname: `/edit-recipe/${id}`, state:{ from: "/profile"}}}><EditIcon className="edit-icon"></EditIcon></Link>
